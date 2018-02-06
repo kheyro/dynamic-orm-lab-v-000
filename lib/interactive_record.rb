@@ -24,5 +24,8 @@ class InteractiveRecord
       column_names << row["name"]
     end
     column_names.compact
-  end
+
+    def self.table_name_for_insert
+      self.column_names.delete_if { |col| col = "id" }
+    end
 end
