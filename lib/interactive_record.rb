@@ -31,14 +31,13 @@ class InteractiveRecord
   end
 
   def table_name_for_insert
+    self.class.table_name
+  end
+
+  def values_for_insert
     self.class.column_names.each do |col_name|
       values << "'#{send(col_name)}'" unless send(col_name).nil?
     end
     values.join(", ")
-  end
-
-  def values_for_insert
-    values = []
-    self.class.col_names_for_insert.each |property, value|
   end
 end
